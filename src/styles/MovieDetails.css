@@ -1,0 +1,6 @@
+.movie-details-page {
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: 30px;
+}

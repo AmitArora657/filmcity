@@ -1,29 +1,18 @@
+import "../styles/MovieInfo.css";
+
 function MovieInfo({ movie, trailer, onWatchTrailer }) {
   return (
-    <div>
+    <div className="movie-info">
       <h1>{movie.title}</h1>
 
-      <h3 style={{ color: "#aaa" }}>{movie.tagline}</h3>
+      <h3 className="movie-tagline">{movie.tagline}</h3>
 
       <p>
         <strong>Rating:</strong> ⭐ {movie.vote_average.toFixed(1)} / 10
       </p>
 
       {trailer && (
-        <button
-          onClick={onWatchTrailer}
-          style={{
-            background: "#E50914",
-            color: "white",
-            border: "none",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-            fontWeight: "bold",
-            margin: "15px 0",
-          }}
-        >
+        <button className="watch-trailer-btn" onClick={onWatchTrailer}>
           ▶ Watch Trailer
         </button>
       )}

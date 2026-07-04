@@ -1,36 +1,14 @@
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 function Navbar() {
   return (
-    <nav
-      style={{
-        background: "#111",
-        padding: "20px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <Link
-        to="/"
-        style={{
-          color: "#E50914",
-          fontSize: "28px",
-          fontWeight: "bold",
-          textDecoration: "none",
-        }}
-      >
+    <nav className="navbar">
+      <Link to="/" className="logo">
         SilverScreen
       </Link>
 
-      <Link
-        to="/favorites"
-        style={{
-          color: "white",
-          textDecoration: "none",
-          fontSize: "18px",
-        }}
-      >
+      <Link to="/favorites" className="favorites-link">
         ❤️ Favorites
       </Link>
     </nav>

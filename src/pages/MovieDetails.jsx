@@ -34,6 +34,9 @@ import { useMovieCredits } from "../hooks/useMovieCredits";
 import { useMovieVideos } from "../hooks/useMovieVideos";
 import TrailerModal from "../components/TrailerModal";
 import MovieInfo from "../components/MovieInfo";
+import CastList from "../components/CastList";
+import SimilarMovies from "../components/SimilarMovies";
+import "../styles/MovieDetails.css";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -61,14 +64,7 @@ function MovieDetails() {
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#181818",
-        color: "white",
-        padding: "30px",
-      }}
-    >
+    <div className="movie-details-page">
       <button
         onClick={() => navigate(-1)}
         style={{
@@ -107,147 +103,16 @@ function MovieDetails() {
           trailer={trailer}
           onWatchTrailer={() => setShowTrailer(true)}
         />
-
-        {/* <div
-          style={{
-            flex: 1,
-          }}
-        >
-          <h1>{movie.title}</h1>
-
-          <h3 style={{ color: "#aaa" }}>{movie.tagline}</h3>
-
-          <p>
-            <strong>Rating:</strong> ⭐ {movie.vote_average.toFixed(1)} / 10
-          </p>
-
-          {trailer && (
-            <button
-              // onClick={() =>
-              //   window.open(
-              //     `https://www.youtube.com/watch?v=${trailer.key}`,
-              //     "_blank",
-              //   )
-              // }
-              onClick={() => setShowTrailer(true)}
-              style={{
-                background: "#E50914",
-                color: "white",
-                border: "none",
-                padding: "12px 20px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontSize: "16px",
-                fontWeight: "bold",
-                margin: "15px 0",
-              }}
-            >
-              ▶ Watch Trailer
-            </button>
-          )}
-
-          <p>
-            <strong>Release Date:</strong> {movie.release_date}
-          </p>
-
-          <p>
-            <strong>Runtime:</strong> {movie.runtime} min
-          </p>
-
-          <p>
-            <strong>Genres:</strong>{" "}
-            {movie.genres.map((g) => g.name).join(", ")}
-          </p>
-
-          <p>
-            <strong>Votes:</strong> {movie.vote_count}
-          </p>
-
-          <h3>Overview</h3>
-
-          <p>{movie.overview}</p>
-        </div> */}
       </div>
 
-      <h2
-        style={{
-          marginTop: "50px",
-          marginBottom: "20px",
-        }}
-      >
-        Similar Movies
-      </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {similarMovies.slice(0, 6).map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-      <h2 style={{ marginTop: "50px" }}>Cast</h2>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          overflowX: "auto",
-          padding: "20px 0",
-        }}
-      >
-        {credits?.cast?.slice(0, 10).map((actor) => (
-          <div
-            key={actor.id}
-            style={{
-              minWidth: "120px",
-              textAlign: "center",
-            }}
-          >
-            {actor.profile_path && (
-              <img
-                src={
-                  actor.profile_path
-                    ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-                    : "https://via.placeholder.com/120x180"
-                }
-                alt={actor.name}
-                style={{
-                  width: "100%",
-                  borderRadius: "8px",
-                }}
-              />
-            )}
-            <p
-              style={{
-                marginTop: "10px",
-                fontWeight: "bold",
-              }}
-            >
-              {actor.name}
-            </p>
-            <small
-              style={{
-                color: "#aaa",
-              }}
-            >
-              {actor.character}
-            </small>
-            <p>
-              <strong>Director:</strong> {director?.name}
-            </p>
-          </div>
-        ))}
-        {showTrailer && (
-          <TrailerModal
-            trailerKey={trailer.key}
-            onClose={() => setShowTrailer(false)}
-          />
-        )}
-      </div>
+      <SimilarMovies movies={similarMovies} />
+      <CastList cast={credits?.cast} />
+      {showTrailer && (
+        <TrailerModal
+          trailerKey={trailer.key}
+          onClose={() => setShowTrailer(false)}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,29 @@
+.cast-heading {
+  margin-top: 50px;
+}
+
+.cast-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.cast-card {
+  min-width: 120px;
+  text-align: center;
+}
+
+.cast-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.cast-card p {
+  margin: 10px 0 4px;
+  font-weight: 600;
+}
+
+.cast-card small {
+  color: #aaa;
+}

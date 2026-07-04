@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useFavorites } from "../hooks/useFavorites";
+import "../styles/MovieCard.css";
 
 function MovieCard({ movie }) {
   const navigate = useNavigate();
@@ -7,24 +8,11 @@ function MovieCard({ movie }) {
   const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
-    <div
-      onClick={() => navigate(`/movie/${movie.id}`)}
-      style={{
-        cursor: "pointer",
-        background: "#222",
-        borderRadius: "10px",
-        overflow: "hidden",
-        transition: "transform 0.2s ease",
-      }}
-    >
+    <div onClick={() => navigate(`/movie/${movie.id}`)} className="movie-card">
       <img
         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
         alt={movie.title}
-        style={{
-          width: "100%",
-          height: "300px",
-          objectFit: "cover",
-        }}
+        className="movie-poster"
       />
 
       <div style={{ padding: "10px" }}>
@@ -37,15 +25,7 @@ function MovieCard({ movie }) {
             e.stopPropagation();
             toggleFavorite(movie);
           }}
-          style={{
-            background: isFavorite(movie.id) ? "#E50914" : "#444",
-            color: "white",
-            border: "none",
-            padding: "8px 12px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            width: "100%",
-          }}
+          className="favorite-button"
         >
           {isFavorite(movie.id) ? "❤️ Remove" : "🤍 Favorite"}
         </button>

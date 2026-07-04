@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "../styles/TrailerModal.css";
 
 function TrailerModal({ trailerKey, onClose }) {
   useEffect(() => {

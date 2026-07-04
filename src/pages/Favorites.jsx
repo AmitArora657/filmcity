@@ -16,8 +16,8 @@ function Favorites() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#181818",
-        color: "white",
+        background: "var(--background-color)",
+        color: "var(--text-color)",
         padding: "20px",
       }}
     >

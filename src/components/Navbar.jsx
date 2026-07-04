@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="logo">
-        SilverScreen
+        🎬 FilmCity
       </Link>
 
-      <Link to="/favorites" className="favorites-link">
-        ❤️ Favorites
-      </Link>
+      <div className="nav-links">
+        <NavLink to="/">Home</NavLink>
+
+        <NavLink to="/favorites">❤️ Favorites</NavLink>
+      </div>
     </nav>
   );
 }

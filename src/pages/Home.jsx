@@ -50,7 +50,7 @@ function Home() {
         color: "white",
       }}
     >
-      <header
+      {/* <header
         style={{
           background: "#111",
           padding: "20px 30px",
@@ -60,7 +60,7 @@ function Home() {
         }}
       >
         🎬 SilverScreen
-      </header>
+      </header> */}
 
       <div style={{ padding: "20px" }}>
         <h1>Movies</h1>

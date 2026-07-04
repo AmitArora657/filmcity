@@ -1,6 +1,7 @@
 .navbar {
   background: var(--navbar-background-color);
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
+  color: white;
   padding: 20px;
   background: black;
   display: flex;
@@ -19,4 +20,20 @@
   font-size: 28px;
   font-weight: bold;
   text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav-links a.active {
+  color: var(--primary-color);
+  font-weight: bold;
 }

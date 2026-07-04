@@ -44,3 +44,9 @@ export const getMovieCredits = async (id) => {
 
   return response.data;
 };
+
+export const getMovieVideos = async (id) => {
+  const response = await api.get(`/movie/${id}/videos`);
+
+  return response.data.results;
+};

@@ -20,7 +20,7 @@ function Navbar() {
           textDecoration: "none",
         }}
       >
-        NETPLAY
+        SilverScreen
       </Link>
 
       <Link

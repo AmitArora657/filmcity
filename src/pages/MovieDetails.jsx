@@ -25,12 +25,15 @@
 // }
 
 // export default MovieDetails;
-
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import { useSimilarMovies } from "../hooks/useSimilarMovies";
 import MovieCard from "../components/MovieCard";
 import { useMovieCredits } from "../hooks/useMovieCredits";
+import { useMovieVideos } from "../hooks/useMovieVideos";
+import TrailerModal from "../components/TrailerModal";
+import MovieInfo from "../components/MovieInfo";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -39,6 +42,13 @@ function MovieDetails() {
   const { movie, loading, error } = useMovieDetails(id);
   const { data: similarMovies = [] } = useSimilarMovies(id);
   const { data: credits } = useMovieCredits(id);
+  const { data: videos = [] } = useMovieVideos(id);
+
+  const trailer = videos.find(
+    (video) => video.type === "Trailer" && video.site === "YouTube",
+  );
+
+  const [showTrailer, setShowTrailer] = useState(false);
 
   const director = credits?.crew?.find((person) => person.job === "Director");
 
@@ -92,7 +102,13 @@ function MovieDetails() {
           }}
         />
 
-        <div
+        <MovieInfo
+          movie={movie}
+          trailer={trailer}
+          onWatchTrailer={() => setShowTrailer(true)}
+        />
+
+        {/* <div
           style={{
             flex: 1,
           }}
@@ -104,6 +120,31 @@ function MovieDetails() {
           <p>
             <strong>Rating:</strong> ⭐ {movie.vote_average.toFixed(1)} / 10
           </p>
+
+          {trailer && (
+            <button
+              // onClick={() =>
+              //   window.open(
+              //     `https://www.youtube.com/watch?v=${trailer.key}`,
+              //     "_blank",
+              //   )
+              // }
+              onClick={() => setShowTrailer(true)}
+              style={{
+                background: "#E50914",
+                color: "white",
+                border: "none",
+                padding: "12px 20px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontSize: "16px",
+                fontWeight: "bold",
+                margin: "15px 0",
+              }}
+            >
+              ▶ Watch Trailer
+            </button>
+          )}
 
           <p>
             <strong>Release Date:</strong> {movie.release_date}
@@ -125,7 +166,7 @@ function MovieDetails() {
           <h3>Overview</h3>
 
           <p>{movie.overview}</p>
-        </div>
+        </div> */}
       </div>
 
       <h2
@@ -200,6 +241,12 @@ function MovieDetails() {
             </p>
           </div>
         ))}
+        {showTrailer && (
+          <TrailerModal
+            trailerKey={trailer.key}
+            onClose={() => setShowTrailer(false)}
+          />
+        )}
       </div>
     </div>
   );

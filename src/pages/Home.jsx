@@ -5,10 +5,42 @@ import MovieCard from "../components/MovieCard";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import { useDebounce } from "../hooks/useDebounce";
 import "../styles/Home.css";
+import {
+  getPopularMovies,
+  getTrendingMovies,
+  getTopRatedMovies,
+  getUpcomingMovies,
+} from "../services/movieApi";
+
+import { useMovieCategory } from "../hooks/useMovieCategory";
+import MovieSection from "../components/MovieSection";
 
 function Home() {
   // const { movies, loading } = useMovies();
-  const { movies, loading, error } = useMovies();
+  // const { movies, loading, error } = useMovies();
+  const {
+    movies: popularMovies,
+    loading: popularLoading,
+    error: popularError,
+  } = useMovieCategory("popular", getPopularMovies);
+
+  const {
+    movies: trendingMovies,
+    loading: trendingLoading,
+    error: trendingError,
+  } = useMovieCategory("trending", getTrendingMovies);
+
+  const {
+    movies: topRatedMovies,
+    loading: topRatedLoading,
+    error: topRatedError,
+  } = useMovieCategory("topRated", getTopRatedMovies);
+
+  const {
+    movies: upcomingMovies,
+    loading: upcomingLoading,
+    error: upcomingError,
+  } = useMovieCategory("upcoming", getUpcomingMovies);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   // const [searchResults, setSearchResults] = useState([]);
@@ -32,16 +64,19 @@ function Home() {
   //   return () => clearTimeout(timeout);
   // }, [search]);
 
-  if (loading) {
+  if (popularLoading || trendingLoading || topRatedLoading || upcomingLoading) {
     return <h2>Loading...</h2>;
   }
 
-  if (error) {
+  if (popularError || trendingError || topRatedError || upcomingError) {
+    return <h2>Something went wrong.</h2>;
+  }
+  if (popularError || trendingError || topRatedError || upcomingError) {
     return <h2>Something went wrong.</h2>;
   }
 
   //const displayedMovies = search.trim() ? searchResults : movies;
-  const displayedMovies = debouncedSearch.trim() ? searchResults : movies;
+  // const displayedMovies = debouncedSearch.trim() ? searchResults : movies;
 
   return (
     <div className="home-page">
@@ -80,11 +115,52 @@ function Home() {
         </div>
         {searchLoading && <p className="search-loading">Searching...</p>}
 
-        <div className="movies-grid">
+        {/* <div className="movies-grid">
           {displayedMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
-        </div>
+        </div> */}
+        {debouncedSearch.trim() ? (
+          <>
+            <h2>Search Results</h2>
+
+            <div className="movies-grid">
+              {searchResults.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <MovieSection
+              title="🔥 Trending"
+              movies={trendingMovies}
+              loading={trendingLoading}
+              error={trendingError}
+            />
+
+            <MovieSection
+              title="⭐ Top Rated"
+              movies={topRatedMovies}
+              loading={topRatedLoading}
+              error={topRatedError}
+            />
+
+            <MovieSection
+              title="🎬 Popular"
+              movies={popularMovies}
+              loading={popularLoading}
+              error={popularError}
+            />
+
+            <MovieSection
+              title="📅 Upcoming"
+              movies={upcomingMovies}
+              loading={upcomingLoading}
+              error={upcomingError}
+            />
+          </>
+        )}
       </div>
     </div>
   );

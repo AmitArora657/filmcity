@@ -50,3 +50,18 @@ export const getMovieVideos = async (id) => {
 
   return response.data.results;
 };
+
+export const getTrendingMovies = async () => {
+  const response = await api.get("/trending/movie/week");
+  return response.data.results;
+};
+
+export const getTopRatedMovies = async () => {
+  const response = await api.get("/movie/top_rated");
+  return response.data.results;
+};
+
+export const getUpcomingMovies = async () => {
+  const response = await api.get("/movie/upcoming");
+  return response.data.results;
+};

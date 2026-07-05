@@ -1,0 +1,15 @@
+.movie-section {
+  margin-bottom: 50px;
+}
+
+.movie-section h2 {
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}

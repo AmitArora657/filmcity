@@ -1,17 +1,23 @@
 import { Link, NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
+import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   return (
     <nav className="navbar">
-      <Link to="/" className="logo">
+      <NavLink to="/" className="logo">
         🎬 FilmCity
-      </Link>
+      </NavLink>
 
       <div className="nav-links">
         <NavLink to="/">Home</NavLink>
 
         <NavLink to="/favorites">❤️ Favorites</NavLink>
+
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
       </div>
     </nav>
   );

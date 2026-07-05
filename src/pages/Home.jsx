@@ -4,6 +4,7 @@ import { searchMovies } from "../services/movieApi";
 import MovieCard from "../components/MovieCard";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import { useDebounce } from "../hooks/useDebounce";
+import "../styles/Home.css";
 
 function Home() {
   // const { movies, loading } = useMovies();
@@ -43,13 +44,7 @@ function Home() {
   const displayedMovies = debouncedSearch.trim() ? searchResults : movies;
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#181818",
-        color: "white",
-      }}
-    >
+    <div className="home-page">
       {/* <header
         style={{
           background: "#111",
@@ -65,41 +60,27 @@ function Home() {
       <div style={{ padding: "20px" }}>
         <h1>Movies</h1>
 
-        <div style={{ marginBottom: "20px" }}>
+        <div className="search-container">
           <input
             type="text"
             placeholder="Search movies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{
-              width: "100%",
-              maxWidth: "500px",
-              padding: "12px 16px",
-              borderRadius: "8px",
-              border: "none",
-              fontSize: "16px",
-              marginBottom: "20px",
-            }}
+            // style={{
+            //   width: "100%",
+            //   maxWidth: "500px",
+            //   padding: "12px 16px",
+            //   borderRadius: "8px",
+            //   border: "none",
+            //   fontSize: "16px",
+            //   marginBottom: "20px",
+            // }}
+            className="search-input"
           />
         </div>
-        {searchLoading && (
-          <p
-            style={{
-              color: "white",
-              marginBottom: "20px",
-            }}
-          >
-            Searching...
-          </p>
-        )}
+        {searchLoading && <p className="search-loading">Searching...</p>}
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-            gap: "20px",
-          }}
-        >
+        <div className="movies-grid">
           {displayedMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}

@@ -14,6 +14,7 @@ import {
 
 import { useMovieCategory } from "../hooks/useMovieCategory";
 import MovieSection from "../components/MovieSection";
+import CategoryNav from "../components/CategoryNav";
 
 function Home() {
   // const { movies, loading } = useMovies();
@@ -93,7 +94,17 @@ function Home() {
       </header> */}
 
       <div style={{ padding: "20px" }}>
-        <h1>Movies</h1>
+        {/* <h1>Movies</h1> */}
+        <h1>Discover Movies</h1>
+
+        <CategoryNav
+          sections={[
+            { id: "trending", title: "🔥 Trending" },
+            { id: "top-rated", title: "⭐ Top Rated" },
+            { id: "popular", title: "🎬 Popular" },
+            { id: "upcoming", title: "📅 Upcoming" },
+          ]}
+        />
 
         <div className="search-container">
           <input
@@ -133,6 +144,7 @@ function Home() {
         ) : (
           <>
             <MovieSection
+              id="trending"
               title="🔥 Trending"
               movies={trendingMovies}
               loading={trendingLoading}
@@ -140,6 +152,7 @@ function Home() {
             />
 
             <MovieSection
+              id="top-rated"
               title="⭐ Top Rated"
               movies={topRatedMovies}
               loading={topRatedLoading}
@@ -147,6 +160,7 @@ function Home() {
             />
 
             <MovieSection
+              id="popular"
               title="🎬 Popular"
               movies={popularMovies}
               loading={popularLoading}
@@ -154,6 +168,7 @@ function Home() {
             />
 
             <MovieSection
+              id="upcoming"
               title="📅 Upcoming"
               movies={upcomingMovies}
               loading={upcomingLoading}

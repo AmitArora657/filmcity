@@ -1,9 +1,11 @@
 .movie-card {
-  cursor: "pointer";
-  background: "var(--surface-color)";
-  border-radius: "var(--border-radius)";
-  overflow: "hidden";
-  transition: "transform var(--transition)";
+  cursor: pointer;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: transform var(--transition);
+
+  flex: 0 0 220px;
 }
 
 .movie-poster {

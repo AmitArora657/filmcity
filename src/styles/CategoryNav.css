@@ -1,0 +1,42 @@
+.category-nav {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 15px 0;
+
+  position: sticky;
+  top: 70px; /* adjust if your navbar height differs */
+
+  background: var(--background-color);
+
+  z-index: 100;
+
+  scrollbar-width: none;
+}
+
+.category-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.category-btn {
+  background: var(--surface-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.category-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.category-btn.active {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35);
+}

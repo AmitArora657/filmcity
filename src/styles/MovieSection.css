@@ -1,5 +1,6 @@
 .movie-section {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+  scroll-margin-top: 140px;
 }
 
 .movie-section h2 {
@@ -8,8 +9,26 @@
   text-align: left;
 }
 
-.movies-grid {
+/* .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+} */
+
+.movie-row {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  padding-bottom: 12px;
+
+  scrollbar-width: none;
+}
+
+.movie-row::-webkit-scrollbar {
+  display: none;
 }

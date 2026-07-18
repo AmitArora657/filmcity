@@ -1,7 +1,7 @@
 import MovieCard from "./MovieCard";
 import "../styles/MovieSection.css";
 
-function MovieSection({ title, movies, loading, error }) {
+function MovieSection({ id, title, movies, loading, error }) {
   if (loading) {
     return <p>Loading {title}...</p>;
   }
@@ -11,10 +11,10 @@ function MovieSection({ title, movies, loading, error }) {
   }
 
   return (
-    <section className="movie-section">
+    <section id={id} className="movie-section">
       <h2>{title}</h2>
 
-      <div className="movies-grid">
+      <div className="movie-row">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
